@@ -1,4 +1,4 @@
 # connectWithMac
 new-description
 
-See you
+See you~
