@@ -1,6 +1,6 @@
 package javaStudy;
 
-public interface TV {
+public interface TV { // Interface
 	public int MIN_VOLUME = 0;
 	public int MAX_VALUME = 100;
 	
