@@ -1,6 +1,6 @@
 package javaStudy;
 
-public interface Calculator {
+public interface Calculator { // Interface
 	public int plus(int i, int j);
 	public int multiple(int i, int j);
 
