@@ -4,13 +4,13 @@
 #include <string>
 using namespace std;
 
-class MoneyBox{										//통장 클래스
+class MoneyBox{																							//통장 클래스
 
 private:
-	string name;							  		//예금주 이름
-	int sum;												//예금 잔고
-  int grade;                      //신용 등급
-  int interest;                   //이자
+	string name;							  															//예금주 이름
+	int sum;																									//예금 잔고
+  int grade;                      													//신용 등급
+  int interest;                   													//이자
 
 public:
 	void init(string newname, int money = 0, int member = 3);	//통장초기화
@@ -24,20 +24,20 @@ public:
 };
 
 void MoneyBox::init(string newname, int money, int member) {
-	name = newname;         //예금주 이름을 세팅
-	sum = money;						//통장잔고 세팅
-  grade = member;         //신용등급 세팅
+	name = newname;         																	//예금주 이름을 세팅
+	sum = money;																							//통장잔고 세팅
+  grade = member;         																	//신용등급 세팅
 }
 
 void MoneyBox::save(int money) {
-	sum += money;	//통장잔고에 입금처리
+	sum += money;																							//통장잔고에 입금처리
 }
 
 void MoneyBox::use(int money) {
-	if (money > sum && grade > 1)		//신용등급이 1이 아니면서 잔고가 출금액보다 적은 경우
+	if (money > sum && grade > 1)															//신용등급이 1이 아니면서 잔고가 출금액보다 적은 경우
 		cout << "잔고가 부족합니다!\n";
 	else
-		sum -= money;		//통장잔고에서 출금처리
+		sum -= money;																						//통장잔고에서 출금처리
 }
 
 void MoneyBox::print() {
@@ -78,12 +78,12 @@ int MoneyBox::transfer(MoneyBox &t, int money) {
 
 
 int main() {
-	MoneyBox a, b;			//통장 a와 b를 생성한다.
-	int key;						//메뉴선택을 위한 키 변수
-	int howmuch;				//입출금액을 위한 변수
+	MoneyBox a, b;																						//통장 a와 b를 생성한다.
+	int key;																									//메뉴선택을 위한 키 변수
+	int howmuch;																							//입출금액을 위한 변수
 
-	a.init("Kim", 10000, 1);				//통장 a의 소유주는 Kim으로 세팅한다. 잔고는 10000원. 1등급.
-	b.init("Lee", 10000, 3);				//통장 b의 소유주는 Lee로 세팅한다. 잔고는 10000원. 3등급.
+	a.init("Kim", 10000, 1);																	//통장 a의 소유주는 Kim으로 세팅한다. 잔고는 10000원. 1등급.
+	b.init("Lee", 10000, 3);																	//통장 b의 소유주는 Lee로 세팅한다. 잔고는 10000원. 3등급.
 
 	while(1) {
 		cout << "\n11: Kim 입금 12: Kim 출금 13: Kim 잔고확인 14: Kim 이자계산 15: Lee에게 송금";
@@ -146,4 +146,3 @@ int main() {
 	}
 	return 0;
 }
-
