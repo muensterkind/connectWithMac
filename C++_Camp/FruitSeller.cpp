@@ -19,9 +19,13 @@ public:
     fruit = fruitName;
 	}
 
-	int SaleFruits(int money, int& change) {
+	int SaleFruits(string fruitName, int money, int& change) {
     if(numOfFruits <= 0) {
       cout << "죄송하지만 남은 " << fruit << "이 없습니다." << endl << endl;
+      return -1;
+    }
+    if(fruitName.compare(fruit) != 0) {
+      cout << fruitName << "를 팔지 않는 가게입니다." << endl << endl;
       return -1;
     }
 		int num = money / FRUIT_PRICE;
@@ -42,9 +46,13 @@ public:
 		return num;
 	}
 
-  int SaleFruits(int money, int& change, int num) {
+  int SaleFruits(string fruitName, int money, int& change, int num) {
     if(numOfFruits <= 0) {
       cout << "죄송하지만 남은 " << fruit << "(이)가 없습니다." << endl << endl;
+      return -1;
+    }
+    if(fruitName.compare(fruit) != 0) {
+      cout << fruitName << "를 팔지 않는 가게입니다." << endl << endl;
       return -1;
     }
     if(numOfFruits < num) {
@@ -73,47 +81,54 @@ public:
 };
 
 class FruitBuyer {
-	int myMoney;		// private:
-	int numOfFruits;	// private:
+	int myMoney;
+	int numOfApples;
+  int numOfOranges;
   string name;
+  string fruit;
 
 public:
 	void InitMembers(int money, string inputName)	{
 		myMoney = money;
-		numOfFruits = 0;
+		numOfApples = 0;
+    numOfOranges = 0;
     name = inputName;
+    fruit = "미정";
 	}
 
-	void BuyFruits(FruitSeller &seller, int money) {
+	void BuyFruits(FruitSeller &seller, string fruit, int money) {
     if(money > myMoney) {
       cout << name << ": 돈이 없다...ㅜㅜ" << endl << endl;
       return;
     }
-		cout << name << ": " << money << "어치의 " << seller.fruit << "를 주세요." << endl << endl;
+		cout << name << ": " << money << "어치의 " << fruit << "를 주세요." << endl << endl;
     int change = 0;
-		int num = seller.SaleFruits(money, change);
+		int num = seller.SaleFruits(fruit, money, change);
     if(num == -1) return;
-    numOfFruits += num;
+    if(fruit == "사과") numOfApples += num;
+    else if(fruit == "오렌지") numOfOranges += num;
 		myMoney -= (money - change);
 	}
 
-  void BuyFruits(FruitSeller &seller, int money, int count) {
+  void BuyFruits(FruitSeller &seller, string fruit, int money, int count) {
     if(money > myMoney) {
       cout << name << ": 돈이 없다...ㅜㅜ" << endl << endl;
       return;
     }
-		cout << name << ": " << count << "개의 " << seller.fruit << "를 주세요." << endl << endl;
+		cout << name << ": " << count << "개의 " << fruit << "를 주세요." << endl << endl;
     int change = 0;
-		int num = seller.SaleFruits(money, change, count);
+		int num = seller.SaleFruits(fruit, money, change, count);
     if(num == -1) return ;
-    numOfFruits += num;
+    if(fruit == "사과") numOfApples += num;
+    else if(fruit == "오렌지") numOfOranges += num;
 		myMoney -= (money - change);
 	}
 
 	void ShowBuyResult() {
     cout << "구매자: " << name << endl;
 		cout << "현재 잔액: " << myMoney << endl;
-		cout << "사과 개수: " << numOfFruits << endl << endl;
+		cout << "사과 개수: " << numOfApples << endl;
+    cout << "오렌지 개수: " << numOfOranges << endl << endl;
 	}
 };
 
@@ -129,12 +144,12 @@ int main(void) {
 	OrangeSeller.ShowSalesResult();
 	buyer.ShowBuyResult();
 
-	buyer.BuyFruits(AppleSeller, 10000);
-  buyer.BuyFruits(OrangeSeller, 5000, 3);
+	buyer.BuyFruits(AppleSeller, "사과", 10000);
+  buyer.BuyFruits(OrangeSeller, "오렌지", 5000, 3);
+  buyer.BuyFruits(OrangeSeller, "사과", 5000, 3);
 
 	AppleSeller.ShowSalesResult();
 	OrangeSeller.ShowSalesResult();
 	buyer.ShowBuyResult();
 	return 0;
 }
-
