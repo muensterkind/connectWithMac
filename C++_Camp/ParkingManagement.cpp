@@ -15,23 +15,29 @@ string timeToString(time_t t){
 
 /* 클래스 Car (차) */
 class Car {
-private:
     int carNumber;                                                                // 차량번호
     //  string carType;                                                             // 차종
     time_t enterTime;                                                             // 입차시간
     
 public:
-    Car(int num, time_t tempTime) {                                               // 정보 초기화
+    Car(int num, time_t tempTime){}                                               // 정보 초기화
+    int getCarNumber(){}                                                          // 차량번호 반환
+    time_t getTime(){}                                                            // 입차시간 반환
+    
+    // 정보 초기화
+    Car(int num, time_t tempTime) {
         //  Car(int num, string type, time_t time) {                                    // 정보 초기화
         carNumber = num;                                                            // 차량번호 초기화
         //    carType = type;                                                           // 차종 초기화
         enterTime = tempTime;                                                       // 입차시간 초기화
     }
     
+    // 차량번호 반환
     int getCarNumber() {
         return carNumber;                                                           // 차량번호 return
     }
     
+    // 입차시간 반환
     time_t getTime() {
         return enterTime;                                                           // 입차시간 return
     }
@@ -39,13 +45,23 @@ public:
 
 /* 클래스 ParkingLot (주차장) */
 class ParkingLot {
-private:
     int MAX_COUNT;                                                                // 주차장의 주차 최대 차량
     int carCount;                                                                 // 현재 차량 수
     vector<Car> carList;                                                          // 주차된 차량의 목록을 받을 vector
     int totalFee;                                                                 // 총 요금
     
 public:
+    ParkingLot(){}                                                                // 주차장 생성자 (default)
+    ParkingLot(int count){}                                                       // 주차장 생성자 (최대차량대수 설정 가능)
+    void run(){}                                                                  // 주차장 관리 프로그램 작동
+    void CarIn(int carNum){}                                                      // 입차
+    void CarOut(int carNum){}                                                     // 출차
+    time_t calcTime(time_t tempTime, int index){}                                 // 시간차 계산하는 함수
+    int calcFee(time_t distTime){}                                                // 요금 계산
+    int findCar(int carNum){}                                                     // 차량번호로 해당 차량 찾기
+    void showCars(){}                                                             // 주차차량 보여주기
+    void showTotalFee(){}                                                         // 총수입계산
+    
     // 주차장 생성자 (default)
     ParkingLot() {
         MAX_COUNT = 100;                                                            // 최대 차량 default 100대
@@ -53,8 +69,8 @@ public:
         totalFee = 0;                                                               // 총 요금 초기화
     }
     
-    // 주차장 생성자 (최대차량대수 설정)
-    ParkingLot(int count) {                                                       // 주차장 constructor (최대차량대수 설정 가능)
+    // 주차장 생성자 (최대차량대수 설정 가능)
+    ParkingLot(int count) {
         MAX_COUNT = count;                                                          // 최대 차량 설정
         carCount = 0;                                                               // 현재 차량 수 초기화
         totalFee = 0;                                                               // 총 요금 초기화
@@ -159,7 +175,7 @@ public:
         return index;                                                               // 찾는 차량번호에 해당하는 인덱스 return. 없는 차인 경우 -1 return.
     }
     
-    //주차차량 보여주기
+    // 주차차량 보여주기
     void showCars() {
         string strTime;                                                             // 시간을 string으로 표현하기 위한 변수
         for(int i = 0; i < carList.size(); i++) {
