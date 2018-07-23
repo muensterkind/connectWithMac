@@ -53,7 +53,7 @@ public:
 class ParkingLot {
   int MAX_COUNT;                                                                // 주차장의 주차 최대 차량
   int carCount;                                                                 // 현재 차량 수
-  vector<Car *> carList;                                                          // 주차된 차량의 목록을 받을 vector
+  vector<Car *> carList;                                                        // 주차된 차량의 목록을 받을 vector
   int totalFee;                                                                 // 총 요금
 
 public:
@@ -209,7 +209,7 @@ void ParkingLot::CarOut(int carNum) {
 // 시간차 계산하는 함수
 time_t ParkingLot::calcTime(time_t tempTime, int index) {
   time_t distTime;                                                              // 시간차 받을 변수
-  distTime = tempTime - carList[index]->getTime();                               // 시간차 계산
+  distTime = tempTime - carList[index]->getTime();                              // 시간차 계산
   return distTime;                                                              // 시간차 return
 }
 
@@ -231,7 +231,7 @@ int ParkingLot::calcFee(time_t distTime) {
 int ParkingLot::findCar(int carNum) {
   int index = -1;                                                               // 찾는 차량번호가 있는 인덱스
   for(int i = 0; i < carList.size(); i++) {                                     // 전체 vector 확인
-    if(carList[i]->getCarNumber() == carNum) {                                   // 찾는 차량번호와 일치할 경우
+    if(carList[i]->getCarNumber() == carNum) {                                  // 찾는 차량번호와 일치할 경우
       index = i;                                                                // 현재 위치를 인덱스로 저장
     }
   }
@@ -242,8 +242,8 @@ int ParkingLot::findCar(int carNum) {
 void ParkingLot::showCars() {
   string strTime;                                                               // 시간을 string으로 표현하기 위한 변수
   for(int i = 0; i < carList.size(); i++) {
-    strTime = timeToString(carList[i]->getTime());                               // 시간을 string으로 표현
-    cout << strTime << " [" << carList[i]->getCarNumber() << "]" << endl;        // 차량 각각의 정보 출력
+    strTime = timeToString(carList[i]->getTime());                              // 시간을 string으로 표현
+    cout << strTime << " [" << carList[i]->getCarNumber() << "]" << endl;       // 차량 각각의 정보 출력
   }
   cout << endl;
 }
@@ -251,7 +251,7 @@ void ParkingLot::showCars() {
 // 총수입계산
 void ParkingLot::showTotalFee() {
   for(int i = 0; i < carList.size(); i++) {
-    cout << carList[i]->getCarNumber() << "-";                                   // 차량번호 목록 출력
+    cout << carList[i]->getCarNumber() << "-";                                  // 차량번호 목록 출력
   }
   cout << endl;
   cout << "총 수입 : " << totalFee << "원" << endl << endl;                       // 총 수입 출력
