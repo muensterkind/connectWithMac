@@ -4,6 +4,9 @@
 #include <time.h>
 using namespace std;
 
+/*
+fstream을 이용한 5. 보고서 기능 필요.
+*/
 // 현재시간을 string type으로 return하는 함수
 string timeToString(time_t t){
   struct tm * tstruct;
