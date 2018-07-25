@@ -128,10 +128,23 @@ void ParkingLot::run() {
     cin >> num;                                                                 // 번호 입력
     switch (num) {                                                              // 번호 선택
     case 1:                                                                     // 1. 입차
-      cout << "[입차] 차량 종류는?(1. 승용, 2. 버스, 3. 트럭) >> ";
-      cin >> type;
-      cout << "[입차] 차량번호는? >> ";
-      cin >> carNum;
+      while(1) {
+        cout << "[입차] 차량 종류는?(1. 승용, 2. 버스, 3. 트럭) >> ";
+        cin >> type;
+        if(type == 1 || type == 2 || type == 3) {
+          break;
+        }
+        else
+          cout << "잘못 입력하였습니다. 다시 입력해주세요." << endl;
+      }
+      while(1) {
+        cout << "[입차] 차량번호는? >> ";
+        cin >> carNum;
+        if(carNum < 0 || carNum > 9999) {
+          cout << "잘못 입력하였습니다. 다시 입력해주세요." << endl;
+        }
+        else break;
+      }
       CarIn(type, carNum);
       break;
     case 2:                                                                     // 2. 출차
