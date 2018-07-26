@@ -64,13 +64,14 @@ public:
   ParkingLot();                                                                 // 주차장 생성자 (default)
   ParkingLot(int count);                                                        // 주차장 생성자 (최대차량대수 설정 가능)
   void run();                                                                   // 주차장 관리 프로그램 작동
-  void CarIn(int type, int carNum);                                                       // 입차
+  void CarIn(int type, int carNum);                                             // 입차
   void CarOut(int carNum);                                                      // 출차
   time_t calcTime(time_t tempTime, int index);                                  // 시간차 계산하는 함수
   int calcFee(time_t distTime);                                                 // 요금 계산
   int findCar(int carNum);                                                      // 차량번호로 해당 차량 찾기
   void showCars();                                                              // 주차차량 보여주기
   void showTotalFee();                                                          // 총수입계산
+  void report();                                                                // 보고서
 };
 
 // 정보 초기화
@@ -221,6 +222,9 @@ void ParkingLot::CarOut(int carNum) {
   carList.erase(carList.begin() + index);                                       // vector에서 해당 차량 삭제
   carCount--;                                                                   // 주차장의 현재 차량 수 감소
   cout << strTime << " [" << carNum << "] 출차, 요금 : " << fee << "원" << endl << endl; // 출차 정보 출력
+  ofstream outFile("Report.txt", ios::app);
+  outFile << strTime << " [" << carNum << "] 출차, 요금 : " << fee << "원" << endl;
+  outFile.close();
 }
 
 // 시간차 계산하는 함수
@@ -274,6 +278,14 @@ void ParkingLot::showTotalFee() {
   cout << "총 수입 : " << totalFee << "원" << endl << endl;                       // 총 수입 출력
 }
 
+// 보고서
+void ParkingLot::report() {
+  ifstream inFile("Report.txt");
+  while(!inFile.eof()) {
+    inFile.getline(inputString, 100);
+    cout << inputString << endl;
+  }
+}
 
 int main() {
     ParkingLot manager(50);                                                     // 주차장 생성, 최대 차량 수 : 50대
