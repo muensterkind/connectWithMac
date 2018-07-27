@@ -2,10 +2,12 @@
 #include <string>
 #include <vector>
 #include <time.h>
+#include <fstream>
 using namespace std;
 
 /*
 fstream을 이용한 5. 보고서 기능 필요.
+fstream에 대한 학습 필요
 */
 
 // 현재시간을 string type으로 return하는 함수
@@ -222,7 +224,7 @@ void ParkingLot::CarOut(int carNum) {
   carList.erase(carList.begin() + index);                                       // vector에서 해당 차량 삭제
   carCount--;                                                                   // 주차장의 현재 차량 수 감소
   cout << strTime << " [" << carNum << "] 출차, 요금 : " << fee << "원" << endl << endl; // 출차 정보 출력
-  ofstream outFile("Report.txt", ios::app);
+  ofstream outFile("./Report.txt", ios::app);
   outFile << strTime << " [" << carNum << "] 출차, 요금 : " << fee << "원" << endl;
   outFile.close();
 }
@@ -280,11 +282,18 @@ void ParkingLot::showTotalFee() {
 
 // 보고서
 void ParkingLot::report() {
-  ifstream inFile("Report.txt");
+  string inputString;
+  ifstream inFile("./Report.txt");
+  if(inFile.fail()) {
+    cout << "파일을 여는 데 실패하였습니다." << endl << endl;
+    return;
+  }
   while(!inFile.eof()) {
-    inFile.getline(inputString, 100);
+    getline(inFile, inputString);
     cout << inputString << endl;
   }
+  inFile.close();
+  cout << endl;
 }
 
 int main() {
