@@ -7,7 +7,8 @@ using namespace std;
 
 /*
 fstream을 이용한 5. 보고서 기능 필요.
-fstream에 대한 학습 필요
+fstream에 대한 학습 필요.
+상속 확인 필요.
 */
 
 // 현재시간을 string type으로 return하는 함수
@@ -203,7 +204,7 @@ void ParkingLot::CarIn(int type, int carNum) {
     carList.push_back(truck1);
     break;
   }
-  cout << strTime << " [" << carNum << " / " << carType << "] 입차" << endl << endl;  // 입차 정보 출력
+  cout << strTime << " [" << carNum << " / " << carType << "] 입차" << endl << endl; // 입차 정보 출력
 }
 
 // 출차
