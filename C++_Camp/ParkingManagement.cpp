@@ -9,6 +9,7 @@ using namespace std;
 fstream을 이용한 5. 보고서 기능 필요.
 fstream에 대한 학습 필요.
 상속 확인 필요.
+상속에 대해 다시 공부.
 */
 
 // 현재시간을 string type으로 return하는 함수
