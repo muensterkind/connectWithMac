@@ -1,7 +1,6 @@
 #include <iostream>
 
-int main(void)
-{
+int main(void) {
   char name[50];
   char phoneNumber[50];
 
