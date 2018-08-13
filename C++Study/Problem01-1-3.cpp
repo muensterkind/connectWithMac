@@ -1,7 +1,6 @@
 #include <iostream>
 
-int main(void)
-{
+int main(void) {
   int num;
   std::cout << "구구단 정보 입력: ";
   std::cin >> num;
